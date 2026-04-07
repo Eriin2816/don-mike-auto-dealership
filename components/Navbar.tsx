@@ -21,48 +21,57 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-brand-dark/95 backdrop-blur-md border-b border-white/[0.06] shadow-[0_1px_24px_rgba(0,0,0,0.4)]"
+          ? "border-b border-white/[0.06] shadow-[0_1px_24px_rgba(0,0,0,0.5)]"
           : "bg-transparent"
       }`}
+      style={scrolled ? { background: "#0D0D0D" } : undefined}
     >
       <nav
         className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
         aria-label="Main navigation"
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric rounded-lg" aria-label="Adaptive Automations home">
-          <Image
-            src="/logo.png"
-            alt="Adaptive Automations"
-            width={280}
-            height={84}
-            className="object-contain h-[72px] w-auto"
-            priority
-          />
+        <Link
+          href="/"
+          className="flex items-center flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric rounded-xl"
+          aria-label="Don Mike Auto Dealership home"
+        >
+          <div className="bg-white rounded-xl px-2 py-1">
+            <Image
+              src="/logo.png"
+              alt="Don Mike Auto Dealership"
+              width={280}
+              height={100}
+              className="object-contain h-[80px] w-auto"
+              priority
+            />
+          </div>
         </Link>
 
         {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-8">
-          {siteConfig.nav.map((item) => (
-            <a
+        <div className="hidden md:flex items-center gap-7">
+          {siteConfig.nav.slice(0, -1).map((item) => (
+            <Link
               key={item.href}
               href={item.href}
-              className="text-white/60 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric rounded"
+              className="text-white/65 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric rounded"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Desktop CTA */}
-        <a
+        <Link
           href={siteConfig.cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center gap-2 bg-brand-electric hover:bg-brand-glow text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 shadow-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-glow focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+          className="hidden md:inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 shadow-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-glow focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark hover:brightness-110 active:scale-[0.98]"
+          style={{ background: "#C1001F" }}
         >
           {siteConfig.cta.label}
-        </a>
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </Link>
 
         {/* Mobile hamburger */}
         <button
@@ -71,21 +80,9 @@ export default function Navbar() {
           aria-expanded={menuOpen}
           aria-label="Toggle navigation menu"
         >
-          <span
-            className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${
-              menuOpen ? "translate-y-2 rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-current transition-opacity duration-200 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${
-              menuOpen ? "-translate-y-2 -rotate-45" : ""
-            }`}
-          />
+          <span className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-current transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
         </button>
       </nav>
 
@@ -97,24 +94,23 @@ export default function Navbar() {
       >
         <div className="px-6 py-6 flex flex-col gap-5">
           {siteConfig.nav.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={handleNavClick}
               className="text-white/70 hover:text-white text-base font-medium transition-colors duration-200"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             href={siteConfig.cta.href}
-            target="_blank"
-            rel="noopener noreferrer"
             onClick={handleNavClick}
-            className="inline-flex items-center justify-center bg-brand-electric hover:bg-brand-glow text-white text-sm font-semibold px-5 py-3 rounded-lg transition-colors duration-200 mt-2"
+            className="inline-flex items-center justify-center text-white text-sm font-semibold px-5 py-3 rounded-lg transition-all duration-200 mt-2 hover:brightness-110"
+            style={{ background: "#C1001F" }}
           >
             {siteConfig.cta.label}
-          </a>
+          </Link>
         </div>
       </div>
     </header>

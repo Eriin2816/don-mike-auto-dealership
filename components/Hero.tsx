@@ -1,192 +1,129 @@
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
 export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0D1620 0%, #142240 45%, #1F2837 100%)" }}
       aria-label="Hero"
     >
-      {/* Background gradient fill */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0D1620 0%, #1A2C52 55%, #1F2837 100%)" }} />
-
-      {/* Radial glow — top right electric blue */}
+      {/* Background image */}
       <div
-        className="absolute top-0 right-0 w-[700px] h-[700px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 80% 20%, rgba(13,172,201,0.28) 0%, transparent 65%)" }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/hero.png')" }}
+        aria-hidden="true"
       />
-      {/* Secondary glow orb — mid right */}
+
+      {/* Multi-layer overlay — dark gradient from left, atmosphere on right */}
       <div
-        className="absolute top-1/3 right-[15%] w-72 h-72 pointer-events-none"
+        className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(52,212,240,0.18) 0%, transparent 70%)",
-          filter: "blur(48px)",
+          background:
+            "linear-gradient(105deg, rgba(8,6,5,0.92) 0%, rgba(13,10,8,0.80) 40%, rgba(13,10,8,0.45) 65%, rgba(8,6,5,0.20) 100%)",
         }}
-      />
-      {/* Bottom left anchor */}
-      <div
-        className="absolute bottom-0 left-0 w-[500px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 0% 100%, rgba(10,18,38,0.8) 0%, transparent 60%)" }}
+        aria-hidden="true"
       />
 
-      {/* Subtle grid pattern */}
+      {/* Carbon texture overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
+            "repeating-linear-gradient(45deg, #fff 0px, #fff 1px, transparent 1px, transparent 8px), repeating-linear-gradient(-45deg, #fff 0px, #fff 1px, transparent 1px, transparent 8px)",
         }}
+        aria-hidden="true"
       />
 
-      {/* Floating abstract visual — desktop only (right side) */}
-      <div className="absolute right-0 top-0 bottom-0 hidden xl:flex items-center justify-end pr-16 pointer-events-none" aria-hidden="true">
-        <div className="relative w-[480px] h-[520px]">
-          {/* Outer ring */}
-          <div
-            className="absolute inset-0 rounded-3xl"
-            style={{
-              border: "1px solid rgba(13,172,201,0.12)",
-              background: "rgba(13,172,201,0.03)",
-            }}
-          />
-          {/* Inner panel — pipeline visualization */}
-          <div className="absolute inset-4 rounded-2xl p-6 flex flex-col gap-4"
-            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            {/* Header bar */}
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-                <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-                <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
-              </div>
-              <div className="w-24 h-2 rounded-full bg-white/8" />
-            </div>
-            {/* Pipeline stages */}
-            {[
-              { label: "New Lead", count: "12", color: "rgba(13,172,201,0.7)", w: "100%" },
-              { label: "Contacted", count: "9", color: "rgba(52,212,240,0.5)", w: "75%" },
-              { label: "Qualified", count: "6", color: "rgba(13,172,201,0.4)", w: "50%" },
-              { label: "Booked", count: "4", color: "rgba(52,212,240,0.6)", w: "33%" },
-            ].map((stage) => (
-              <div key={stage.label} className="flex flex-col gap-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-white/40 text-xs font-medium">{stage.label}</span>
-                  <span className="text-white/30 text-xs">{stage.count}</span>
-                </div>
-                <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                  <div
-                    className="h-full rounded-full"
-                    style={{ width: stage.w, background: stage.color }}
-                  />
-                </div>
-              </div>
-            ))}
-            {/* Divider */}
-            <div className="h-px bg-white/5 my-1" />
-            {/* Notification rows */}
-            {[
-              { text: "New lead from Google Ads", time: "2m ago" },
-              { text: "Follow-up sent via SMS", time: "5m ago" },
-              { text: "Appointment confirmed", time: "12m ago" },
-            ].map((n) => (
-              <div key={n.text} className="flex items-center gap-3">
-                <div
-                  className="w-2 h-2 rounded-full flex-shrink-0"
-                  style={{ background: "rgba(13,172,201,0.7)" }}
-                />
-                <span className="text-white/35 text-xs flex-1">{n.text}</span>
-                <span className="text-white/20 text-xs">{n.time}</span>
-              </div>
-            ))}
-          </div>
-          {/* Corner accent glow */}
-          <div
-            className="absolute -bottom-8 -right-8 w-40 h-40"
-            style={{
-              background: "radial-gradient(circle, rgba(13,172,201,0.25) 0%, transparent 70%)",
-              filter: "blur(20px)",
-            }}
-          />
-        </div>
-      </div>
+      {/* Red glow — bottom left accent */}
+      <div
+        className="absolute bottom-0 left-0 w-[600px] h-[400px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 0% 100%, rgba(193,0,31,0.18) 0%, transparent 65%)",
+        }}
+        aria-hidden="true"
+      />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-28 w-full">
-        <div className="max-w-[650px] xl:max-w-[720px]">
+        <div className="max-w-[640px]">
+
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2.5 bg-[rgba(13,172,201,0.1)] border border-[rgba(13,172,201,0.2)] text-[#34D4F0] text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-8">
-            <span className="w-1.5 h-1.5 bg-[#34D4F0] rounded-full" style={{ animation: "pulse 3s ease-in-out infinite" }} />
-            Automation-Driven Marketing
+          <div className="inline-flex items-center gap-2.5 border border-white/20 text-white/70 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-8"
+            style={{ background: "rgba(193,0,31,0.12)" }}>
+            <span
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: "#C1001F", animation: "pulse 3s ease-in-out infinite" }}
+            />
+            Don Mike Auto Dealership
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-extrabold text-white leading-[1.04] tracking-[-0.035em] mb-6">
-            The Lead Engine Built for{" "}
-            <span
-              className="text-transparent bg-clip-text"
-              style={{ backgroundImage: "linear-gradient(135deg, #0DACC9 0%, #34D4F0 60%, #0DACC9 100%)" }}
-            >
-              High-Ticket Local Businesses
+          {/* Headline — brand guideline style */}
+          <h1
+            className="text-5xl sm:text-6xl lg:text-[5rem] font-black text-white leading-[1.0] tracking-[-0.03em] mb-5"
+            style={{ fontFamily: "var(--font-montserrat)" }}
+          >
+            DRIVE YOUR{" "}
+            <span style={{ color: "#C1001F" }}>
+              AMBITION.
             </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-white/60 leading-[1.75] max-w-xl mb-10 font-light">
-            From the first inquiry to the booked appointment — Adaptive Automations
-            builds the connected systems that capture, follow up, and convert, so
-            your team closes more and chases less.
+          <p
+            className="text-lg sm:text-xl text-white/65 leading-[1.75] max-w-lg mb-4 font-light"
+            style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontSize: "1.35rem" }}
+          >
+            New and certified pre-owned Mazda vehicles for Gainesville&apos;s students,
+            professionals, and families — guided by people who know the local market.
+          </p>
+
+          <p className="text-sm text-white/45 leading-relaxed max-w-md mb-10">
+            Transparent pricing. Payment-forward financing. No pressure, no games.
+            Serving all of Alachua County.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-14">
-            <a
+            <Link
               href={siteConfig.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 text-white font-semibold text-base px-7 py-4 rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#34D4F0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0D1620] hover:brightness-110"
+              className="group inline-flex items-center gap-3 text-white font-bold text-sm px-7 py-4 rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-glow focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark hover:brightness-110 active:scale-[0.98]"
               style={{
-                background: "#0DACC9",
-                boxShadow: "0 4px 24px rgba(13,172,201,0.35)",
+                background: "#C1001F",
+                boxShadow: "0 4px 24px rgba(193,0,31,0.4)",
+                fontFamily: "var(--font-montserrat)",
+                letterSpacing: "0.04em",
               }}
             >
-              {siteConfig.cta.label}
-              <svg
-                className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
-              >
+              SCHEDULE A CALL
+              <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
 
-            <a
-              href="#how-it-works"
-              className="group inline-flex items-center gap-2 text-white/55 hover:text-white text-sm font-medium transition-colors duration-200 px-2 py-1"
+            <Link
+              href="/car-collections"
+              className="group inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white/80 hover:text-white text-sm font-semibold px-7 py-4 rounded-xl transition-all duration-200 backdrop-blur-sm"
+              style={{ background: "rgba(255,255,255,0.06)" }}
             >
-              See How It Works
-              <svg
-                className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-200"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              View Car Collection
+              <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
           </div>
 
           {/* Trust bullets */}
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 pt-5 border-t border-white/[0.07]">
-            {["Fast Setup", "Proven Systems", "No Long-Term Lock-In"].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-sm text-white/40">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-5 border-t border-white/[0.10]">
+            {[
+              "No-Pressure Process",
+              "Same-Day Response",
+              "CPO & New Available",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-2 text-sm text-white/45">
                 <svg
-                  className="w-4 h-4 text-[#0DACC9] flex-shrink-0"
+                  className="w-3.5 h-3.5 flex-shrink-0"
+                  style={{ color: "#C1001F" }}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -202,10 +139,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom fade to offwhite */}
+      {/* Bottom fade to off-white */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: "linear-gradient(to top, #F5F3EC, transparent)" }}
+        className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none"
+        style={{ background: "linear-gradient(to top, #F5F3EE, transparent)" }}
+        aria-hidden="true"
       />
     </section>
   );

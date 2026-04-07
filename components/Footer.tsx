@@ -6,49 +6,66 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-dark border-t border-white/[0.06]">
+    <footer style={{ background: "#0D0D0D", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-6" aria-label="Adaptive Automations home">
-              <Image
-                src="/logo.png"
-                alt="Adaptive Automations"
-                width={240}
-                height={72}
-                className="object-contain h-[64px] w-auto"
-              />
+            <Link href="/" className="inline-block mb-6" aria-label="Don Mike Auto home">
+              <div className="bg-white rounded-xl px-2 py-1 inline-block">
+                <Image
+                  src="/logo.png"
+                  alt="Don Mike Auto Dealership"
+                  width={280}
+                  height={100}
+                  className="object-contain h-[90px] w-auto"
+                />
+              </div>
             </Link>
-            <p className="text-white/45 text-sm leading-relaxed max-w-xs mb-8">
-              Automation-driven marketing systems for high-ticket local service businesses.
-              We build the lead engine that turns traffic into booked appointments.
+            <p className="text-white/45 text-sm leading-relaxed max-w-xs mb-3">
+              New and certified pre-owned Mazda vehicles for Gainesville&apos;s students,
+              professionals, and families. Transparent financing. No pressure.
             </p>
+            <p className="text-white/30 text-xs leading-relaxed max-w-xs mb-8">
+              Serving Gainesville, Alachua, Newberry, Archer, Waldo, High Springs,
+              and all of Alachua County.
+            </p>
+
             {/* Contact info */}
             <div className="flex flex-col gap-3">
               <a
                 href={siteConfig.business.phoneHref}
-                className="flex items-center gap-3 text-white/50 hover:text-brand-electric text-sm font-medium transition-colors duration-200 group"
+                className="flex items-center gap-3 text-white/50 hover:text-white text-sm font-medium transition-colors duration-200 group"
               >
-                <span className="w-8 h-8 rounded-lg bg-white/[0.05] flex items-center justify-center group-hover:bg-brand-electric/10 transition-colors duration-200">
+                <span
+                  className="w-8 h-8 rounded-lg flex items-center justify-center group-hover:bg-red-900/20 transition-colors duration-200"
+                  style={{ background: "rgba(255,255,255,0.05)" }}
+                >
                   <PhoneIcon />
                 </span>
                 {siteConfig.business.phone}
               </a>
               <a
                 href={siteConfig.business.emailHref}
-                className="flex items-center gap-3 text-white/50 hover:text-brand-electric text-sm font-medium transition-colors duration-200 group"
+                className="flex items-center gap-3 text-white/50 hover:text-white text-sm font-medium transition-colors duration-200 group"
               >
-                <span className="w-8 h-8 rounded-lg bg-white/[0.05] flex items-center justify-center group-hover:bg-brand-electric/10 transition-colors duration-200">
+                <span
+                  className="w-8 h-8 rounded-lg flex items-center justify-center group-hover:bg-red-900/20 transition-colors duration-200"
+                  style={{ background: "rgba(255,255,255,0.05)" }}
+                >
                   <EmailIcon />
                 </span>
                 {siteConfig.business.email}
               </a>
-              <div className="flex items-center gap-3 text-white/50 text-sm">
-                <span className="w-8 h-8 rounded-lg bg-white/[0.05] flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center gap-3 text-white/40 text-sm">
+                <span
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(255,255,255,0.05)" }}
+                >
                   <LocationIcon />
                 </span>
-                {siteConfig.business.address}
+                {siteConfig.business.city}
               </div>
             </div>
           </div>
@@ -61,14 +78,24 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {siteConfig.nav.map((item) => (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-white/45 hover:text-white text-sm transition-colors duration-200"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/terms" className="text-white/45 hover:text-white text-sm transition-colors duration-200">
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-white/45 hover:text-white text-sm transition-colors duration-200">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -78,27 +105,40 @@ export default function Footer() {
               Get Started
             </h3>
             <p className="text-white/40 text-sm leading-relaxed mb-5">
-              Ready to build a system that converts? Book a free strategy call.
+              A quick call is the best way to find the right Mazda at the right payment.
+              No pressure — just honest guidance.
             </p>
-            <a
+            <Link
               href={siteConfig.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-brand-electric hover:bg-brand-glow text-white text-sm font-semibold px-5 py-3 rounded-lg transition-colors duration-200 shadow-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-glow"
+              className="inline-flex items-center gap-2 text-white text-sm font-bold px-5 py-3 rounded-lg transition-all duration-200 hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-glow"
+              style={{
+                background: "#C1001F",
+                boxShadow: "0 4px 16px rgba(193,0,31,0.3)",
+                fontFamily: "var(--font-montserrat)",
+                letterSpacing: "0.03em",
+              }}
             >
-              {siteConfig.cta.label}
-            </a>
+              SCHEDULE A CALL
+            </Link>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/[0.06] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div
+          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+        >
           <p className="text-white/25 text-xs">
             &copy; {currentYear} {siteConfig.business.name}. All rights reserved.
           </p>
-          <p className="text-white/20 text-xs">
-            Automation-Driven Marketing for Local Businesses
-          </p>
+          <div className="flex items-center gap-5">
+            <Link href="/terms" className="text-white/20 hover:text-white/50 text-xs transition-colors duration-200">
+              Terms &amp; Conditions
+            </Link>
+            <Link href="/privacy" className="text-white/20 hover:text-white/50 text-xs transition-colors duration-200">
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

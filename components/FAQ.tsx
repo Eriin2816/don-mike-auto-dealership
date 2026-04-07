@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
 export default function FAQ() {
@@ -13,28 +14,32 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-brand-offwhite py-24 px-6"
+      className="py-24 px-6"
+      style={{ background: "#F5F3EE" }}
       aria-label="Frequently asked questions"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-16">
           {/* Left: header */}
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <p className="text-brand-electric text-xs font-semibold uppercase tracking-widest mb-3">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest mb-3"
+              style={{ color: "#C1001F" }}
+            >
               FAQ
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-brand-slate leading-tight tracking-[-0.03em] mb-5">
-              Common questions, answered
+            <h2 className="text-3xl sm:text-4xl font-bold text-brand-dark leading-tight tracking-tight mb-5">
+              Questions we hear from every type of Gainesville buyer.
             </h2>
             <p className="text-brand-graphite text-base leading-[1.75] mb-8">
-              Not sure if this is the right fit or how the process works? These are the
-              questions we hear most often.
+              Whether you&apos;re a first-time buyer, a family shopping for more space,
+              or someone who just wants to know what your trade-in is worth — these are
+              the questions we answer every week.
             </p>
-            <a
+            <Link
               href={siteConfig.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-brand-electric hover:text-brand-navy font-semibold text-sm transition-colors duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric rounded"
+              className="inline-flex items-center gap-2 font-semibold text-sm transition-colors duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric rounded"
+              style={{ color: "#C1001F" }}
             >
               Still have questions? Book a call
               <svg
@@ -47,7 +52,7 @@ export default function FAQ() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
           </div>
 
           {/* Right: accordion */}
@@ -63,17 +68,19 @@ export default function FAQ() {
                 >
                   <span
                     className={`text-sm font-semibold leading-snug transition-colors duration-200 ${
-                      openIndex === i ? "text-brand-electric" : "text-brand-slate group-hover:text-brand-electric"
+                      openIndex === i ? "text-brand-electric" : "text-brand-dark group-hover:text-brand-electric"
                     }`}
+                    style={openIndex === i ? { color: "#C1001F" } : {}}
                   >
                     {faq.q}
                   </span>
                   <span
-                    className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 mt-0.5 ${
+                    className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 mt-0.5"
+                    style={
                       openIndex === i
-                        ? "bg-brand-electric text-white rotate-45"
-                        : "bg-brand-warmgray text-brand-graphite"
-                    }`}
+                        ? { background: "#C1001F", color: "white", transform: "rotate(45deg)" }
+                        : { background: "#E5E2D8", color: "#6B6D76" }
+                    }
                     aria-hidden="true"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
