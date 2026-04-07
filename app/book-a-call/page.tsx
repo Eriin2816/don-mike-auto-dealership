@@ -94,8 +94,16 @@ export default function BookACallPage() {
         </section>
 
         {/* Booking embed section */}
+        <style>{`
+          .booking-iframe { height: 760px; }
+          @media (min-width: 1024px) {
+            .booking-iframe { height: 960px; }
+            .booking-outer  { max-width: 860px; }
+          }
+        `}</style>
+
         <section className="px-6 pb-24" aria-label="Booking widget">
-          <div className="max-w-3xl mx-auto">
+          <div className="booking-outer max-w-3xl mx-auto">
             <div
               className="rounded-2xl overflow-hidden"
               style={{
@@ -120,11 +128,12 @@ export default function BookACallPage() {
               <div className="p-6">
                 <iframe
                   src={siteConfig.business.bookingHref}
+                  className="booking-iframe"
                   style={{
                     width: "100%",
                     border: "none",
-                    minHeight: "680px",
                     background: "transparent",
+                    display: "block",
                   }}
                   title="Schedule a call with Don Mike Auto"
                   loading="lazy"
